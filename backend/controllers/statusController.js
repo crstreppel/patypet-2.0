@@ -55,3 +55,47 @@ exports.deleteStatus = async (req, res) => {
     res.status(500).json({ error: 'Erro ao excluir o status.' });
   }
 };
+
+// Editar um status
+exports.updateStatus = async (req, res) => {
+  try {
+    const { descricao, password } = req.body;
+
+    if (password !== 'senhaSegura') {
+      return res.status(403).json({ error: 'Senha incorreta.' });
+    }
+
+    const status = await Status.findByPk(req.params.id);
+    if (!status) {
+      return res.status(404).json({ error: 'Status não encontrado.' });
+    }
+
+    status.descricao = descricao;
+    await status.save();
+
+    res.status(200).json(status);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao atualizar o status.' });
+  }
+};
+
+// Excluir um status
+exports.deleteStatus = async (req, res) => {
+  try {
+    const { password } = req.body;
+
+    if (password !== 'senhaSegura') {
+      return res.status(403).json({ error: 'Senha incorreta.' });
+    }
+
+    const status = await Status.findByPk(req.params.id);
+    if (!status) {
+      return res.status(404).json({ error: 'Status não encontrado.' });
+    }
+
+    await status.destroy();
+    res.status(200).json({ message: 'Status excluído com sucesso.' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao excluir o status.' });
+  }
+};

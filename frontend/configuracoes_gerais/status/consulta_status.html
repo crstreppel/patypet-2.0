@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Status</title>
+  <link rel="stylesheet" href="style_consulta_status.css">
+</head>
+<body>
+  <h1>Consulta de Status</h1>
+
+  <!-- Tabela para listar os status -->
+  <table id="statusTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Status serão listados aqui via JavaScript -->
+    </tbody>
+  </table>
+
+  <!-- Modal para edição de status -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Editar Status</h2>
+      <form id="editStatusForm">
+        <input type="hidden" id="editId">
+        <label for="editDescricao">Descrição:</label>
+        <input type="text" id="editDescricao" required>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" required>
+        <button type="submit">Salvar Alterações</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script_consulta_status.js"></script>
+</body>
+</html>
