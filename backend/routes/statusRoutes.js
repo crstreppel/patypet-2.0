@@ -1,11 +1,10 @@
 const express = require('express');
-const router = express.Router();
 const statusController = require('../controllers/statusController');
+const authMiddleware = require('../middlewares/authMiddleware');
+const router = express.Router();
 
-// Rotas para o CRUD de Status
-router.get('/', statusController.getAllStatuses);
-router.post('/', statusController.createStatus);
-router.put('/:id', statusController.updateStatus);
-router.delete('/:id', statusController.deleteStatus);
+// Protege as rotas de criação, edição e exclusão
+router.put('/:id', authMiddleware, statusController.updateStatus);
+router.delete('/:id', authMiddleware, statusController.deleteStatus);
 
 module.exports = router;
