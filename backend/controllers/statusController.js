@@ -1,4 +1,5 @@
 const { Status } = require('../models');
+const db = require('../models');
 
 // Listar todos os status
 exports.getAllStatuses = async (req, res) => {
@@ -25,51 +26,23 @@ exports.createStatus = async (req, res) => {
   }
 };
 
-// Atualizar um status
-exports.updateStatus = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { descricao } = req.body;
-    const status = await Status.findByPk(id);
-    if (!status) {
-      return res.status(404).json({ error: 'Status não encontrado.' });
-    }
-    await status.update({ descricao });
-    res.json(status);
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao atualizar o status.' });
-  }
-};
-
-// Excluir um status
-exports.deleteStatus = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const status = await Status.findByPk(id);
-    if (!status) {
-      return res.status(404).json({ error: 'Status não encontrado.' });
-    }
-    await status.destroy();
-    res.json({ message: 'Status excluído com sucesso.' });
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao excluir o status.' });
-  }
-};
-
-// Editar um status
+// Atualizar um status com verificação de senha
 exports.updateStatus = async (req, res) => {
   try {
     const { descricao, password } = req.body;
 
+    // Verifica se a senha está correta
     if (password !== 'senhaSegura') {
       return res.status(403).json({ error: 'Senha incorreta.' });
     }
 
+    // Verifica se o status existe
     const status = await Status.findByPk(req.params.id);
     if (!status) {
       return res.status(404).json({ error: 'Status não encontrado.' });
     }
 
+    // Atualiza a descrição do status
     status.descricao = descricao;
     await status.save();
 
@@ -79,20 +52,23 @@ exports.updateStatus = async (req, res) => {
   }
 };
 
-// Excluir um status
+// Excluir um status com verificação de senha
 exports.deleteStatus = async (req, res) => {
   try {
     const { password } = req.body;
 
+    // Verifica se a senha está correta
     if (password !== 'senhaSegura') {
       return res.status(403).json({ error: 'Senha incorreta.' });
     }
 
+    // Verifica se o status existe
     const status = await Status.findByPk(req.params.id);
     if (!status) {
       return res.status(404).json({ error: 'Status não encontrado.' });
     }
 
+    // Exclui o status
     await status.destroy();
     res.status(200).json({ message: 'Status excluído com sucesso.' });
   } catch (error) {

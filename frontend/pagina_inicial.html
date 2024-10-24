@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Principal - Sistema Administrativo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    nav {
+      margin-bottom: 20px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Página Principal</h1>
+
+  <!-- Menu de Navegação -->
+  <nav>
+    <ul>
+      <li><a href="http://127.0.0.1:5500/frontend/configuracoes_gerais/status/cad_status.html">Cadastro de Status</a></li>
+      <li><a href="cadastro_clientes.html">Cadastro de Clientes</a></li>
+      <li><a href="cadastro_pets.html">Cadastro de Pets</a></li>
+      <!-- Adicione outros links conforme necessário -->
+      <li><a href="#" id="logout">Sair</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    // Verifica se o token está no localStorage
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Você precisa fazer login para acessar esta página.');
+      window.location.href = 'login.html';  // Redireciona para a página de login
+    }
+
+    // Função para realizar logout
+    document.getElementById('logout').addEventListener('click', function() {
+      localStorage.removeItem('token');  // Remove o token do localStorage
+      alert('Você foi desconectado.');
+      window.location.href = 'login.html';  // Redireciona para a página de login
+    });
+  </script>
+</body>
+</html>

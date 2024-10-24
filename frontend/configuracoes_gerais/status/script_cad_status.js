@@ -12,13 +12,16 @@ document.getElementById('statusForm').addEventListener('submit', async (event) =
     }
 
     try {
+        // Supondo que você armazene o token no localStorage
+        const token = localStorage.getItem('token'); 
+
         const response = await fetch('http://localhost:3000/status', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`, // Adiciona o token no cabeçalho
             },
             body: JSON.stringify({ descricao }), // Envia o campo "descricao" corretamente
-            
         });
 
         const data = await response.json();

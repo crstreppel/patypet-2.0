@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
-  const token = req.headers['authorization'];
+  const authHeader = req.headers['authorization']; // Recupera o cabeçalho de autorização
+  const token = authHeader && authHeader.split(' ')[1]; // Extrai o token
 
   if (!token) {
     return res.status(403).json({ error: 'Token não fornecido' });

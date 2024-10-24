@@ -34,8 +34,8 @@
         const data = await response.json();
         if (response.ok) {
           localStorage.setItem('token', data.token);  // Armazena o token no navegador
-          alert('Login bem-sucedido!');
-          // Redireciona para a página protegida
+          //alert('Login bem-sucedido!');
+          window.location.href = 'http://127.0.0.1:5500/frontend/pagina_inicial.html';  // Redireciona para a página principal
         } else {
           alert(`Erro: ${data.error}`);
         }
