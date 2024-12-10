@@ -5,6 +5,7 @@ const statusRoutes = require('./routes/statusRoutes'); // Importando as rotas de
 const usuarioRoutes = require('./routes/usuarioRoutes'); // Rotas de usuário
 const authRoutes = require('./routes/authRoutes'); // Rotas de autenticação
 const sessaoRoutes = require('./routes/sessaoRoutes');  // Importa as rotas de sessão
+const especieRoutes = require('./routes/especieRoutes');
 
 const db = require('./models'); // Importando os modelos
 
@@ -20,6 +21,7 @@ app.use('/', statusRoutes); // Rota para o módulo de status
 app.use('/', usuarioRoutes); // Rota para usuários
 app.use('/', authRoutes); // Rota para autenticação
 app.use('/', sessaoRoutes); // Rota para rotas de sessão
+app.use('/', especieRoutes); // Rotas para o módulo de espécies
 
 // Testar a conexão com o banco de dados (opcional)
 db.sequelize.sync().then(() => {
