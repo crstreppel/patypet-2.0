@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Espécies</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Arquivo CSS -->
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <a href="/">PatyPet Admin</a>
+    </div>
+    <ul class="navbar-links">
+      <li><a href="/status">Status</a></li>
+      <li><a href="/usuarios">Usuários</a></li>
+      <li><a href="/especies">Espécies</a></li>
+    </ul>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </nav>
+
+  <!-- Formulário de Cadastro de Espécies -->
+  <main>
+    <h1>Cadastro de Espécies</h1>
+    <form id="formEspecie">
+      <label for="descricao">Descrição da Espécie:</label>
+      <input type="text" id="descricao" name="descricao" required>
+
+            <button type="submit">Cadastrar Espécie</button>
+    </form>
+    <p id="responseMessage"></p>
+  </main>
+
+  <script src="script_cad_especie.js"></script> <!-- Arquivo JavaScript -->
+</body>
+</html>
